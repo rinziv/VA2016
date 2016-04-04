@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Bootstrap 101 Template</title>
+
+    <!-- Bootstrap -->
+    <link href="./assets/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+	  <div class="jumbotron">
+	        <div class="container">
+	          <h1>Scatterplot Example</h1>
+	          <p>A simple example to map an array of numbers to a set of points.</p>
+	          <p>Adapted from the example in <a href="http://alignedleft.com/tutorials/d3/making-a-scatterplot">AlignedLeft.com</a></p>
+	        </div>
+	  </div>
+	  <div class="container">
+	        <!-- Example row of columns -->
+	        <div class="row">
+	          <div class="col-sm-5">
+	            <h2>Outline</h2>
+				<ol>
+					<li>Create SVG container</li>
+					<li>Join data with <code>circle</code> elements</li>
+					<li>Adjust layout and positions</li>
+					<li>Colors and Labels</li>
+					<li>Improve code and graphics with <code>g</code></li>
+				</ol>
+	          </div>
+	          <div class="col-sm-7">
+	            <h2>Visualization</h2>
+	            <div id="viz"></div>
+	         </div>
+			 <div class="row">
+				 <h3>Dataset</h3>
+			 	<div class="col-sm-12" id="dataset"></div>
+			 </div>
+	        </div>
+
+	        <hr>
+
+	        <footer>
+	          <p>Visual Analytics Course - 2015-2016</p>
+	        </footer>
+	      </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="./assets/js/jquery-1.11.3.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./assets/js/bootstrap.min.js"></script>
+	<!-- D3.js library -->
+	<script src="./assets/js/d3.min.js"></script>
+	
+	<script>
+	var dataset = [
+		[ 5,     20 ],
+		[ 480,   90 ],
+		[ 250,   50 ],
+		[ 100,   33 ],
+		[ 330,   95 ],
+		[ 410,   12 ],
+		[ 475,   44 ],
+		[ 25,    67 ],
+		[ 85,    21 ],
+		[ 220,   88 ]
+	];
+	
+	var w = 350;
+	var h = 200;
+	var margins = {top:10, left:10, bottom:10, right:10};
+	
+	var svg = d3.select("#viz")
+		.append("svg")
+		.attr("width",w)
+	.attr("height",h);
+	
+	var circles = svg.selectAll("circle")
+		.data(dataset)
+		.enter()
+	.append("circle");
+	
+	var minx = d3.min(dataset,function(d){return d[0]});
+	var maxx = d3.max(dataset,function(d){return d[0]});
+	
+	var miny = d3.min(dataset,function(d){return d[1]});
+	var maxy = d3.max(dataset,function(d){return d[1]});
+	
+	
+	var xs = d3.scale.linear()
+		.domain([minx,maxx])
+		.range([margins.left,w-margins.right]);
+	
+	var ys = d3.scale.linear()
+		.domain([miny,maxy])
+		.range([h-margins.bottom,margins.top]); 
+	
+	circles
+	.attr("cx",function(d){
+		console.log("coord",d);
+		return xs(d[0])}
+	)
+	.attr("cy",function(d){return ys(d[1])})
+	.attr("r",3);
+	
+	
+	console.log("Dataset", dataset);
+	
+	
+	dataset_to_HTML(dataset);
+	
+	
+	
+	function dataset_to_HTML(data){
+		var div = d3.select("#dataset");
+		var join = div.selectAll("span.pair")
+			.data(dataset)
+			.enter()
+		.append("span")
+		.attr("class","pair")		
+		.attr("style","margin-right:2px");
+		
+		join.attr("class","label label-info")
+		.text(function(d){return d});
+	}
+	</script>
+  </body>
+</html>
