@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Bootstrap 101 Template</title>
+
+    <!-- Bootstrap -->
+    <link href="./assets/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+	  <div class="jumbotron">
+	        <div class="container">
+	          <h1>Bar Chart Example</h1>
+	          <p>A simple example to map an array of numbers to a set of bars, with height proportional to the values.</p>
+	          <p>Adapted from the example in <a href="http://alignedleft.com/tutorials/d3/making-a-bar-chart">AlignedLeft.com</a></p>
+	        </div>
+	  </div>
+	  <div class="container">
+	        <!-- Example row of columns -->
+	        <div class="row">
+	          <div class="col-sm-5">
+	            <h2>Outline</h2>
+				<ol>
+					<li>Create SVG container</li>
+					<li>Join data with <code>rect</code> elements</li>
+					<li>Adjust layout and positions</li>
+					<li>Colors and Labels</li>
+					<li>Improve code and graphics with <code>g</code></li>
+				</ol>
+	          </div>
+	          <div class="col-sm-7">
+	            <h2>Visualization</h2>
+	            <div id="viz"></div>
+			 <div class="row">
+				 <h3>Dataset</h3>
+			 	<div class="col-sm-12" id="dataset"></div>
+			 </div>
+
+	        </div>
+
+	        <hr>
+
+	        <footer>
+	          <p>Visual Analytics Course - 2015-2016</p>
+	        </footer>
+	      </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="./assets/js/jquery-1.11.3.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./assets/js/bootstrap.min.js"></script>
+	<!-- D3.js library -->
+	<script src="./assets/js/d3.min.js"></script>
+	
+	<script>
+	var dataset = [5, 10, 13, 19, 21, 25, 22, 18, 15, 13,11, 12, 15, 20, 18, 17, 16, 18, 50, 25];
+	
+	var width = 500;
+	var height = 300;
+	
+	var margins = {top:10, left:10,bottom:10,right:10};
+	
+	var svg = d3.select("#viz")
+	.append("svg")
+	.attr("width",width)
+	.attr("height",height);
+	
+	// var barw = Math.ceil((width-margins.left-margins.right)/(dataset.length + 1));
+	var barw = width / dataset.length - 1;
+	
+	var max = d3.max(dataset);
+	
+	var h = d3.scale.linear()
+		.domain([0,max])
+	.range([0,height/2]);
+	
+	var gs = svg.selectAll("g")
+		.data(dataset)
+		.enter()
+		.append("g")
+		.attr("transform",function(d,i){
+			return "translate("+(margins.left+i*(barw+1))+","+(height - h(d)-margins.bottom)+")";
+		})
+	
+	// add bars
+	gs.append("rect")
+		.attr("width",barw)
+		.attr("height",function(d){
+			return h(d);
+		});
+		
+	// add text	
+	gs.append("text")
+		.attr("x",barw/2)
+		.attr("y",12)
+		.attr("fill","white")
+		.attr("text-anchor","middle")
+		.text(function(d){return d;});
+
+	var gsc = svg.selectAll("g.circles")
+		.data(dataset)
+		.enter()
+		.append("g")
+		.attr("class","circles")
+		.attr("transform",function(d,i){
+			return "translate("+(margins.left+i*(barw+1))+",0)";
+		})
+		
+	
+	var radius = d3.scale.sqrt()
+		.domain([0,max])
+		.range([0,barw*0.66]);
+	
+	gsc.append("circle")
+		.attr("cx",barw/2)
+		.attr("cy",100)
+		.attr("r",function(d){
+			return radius(d);
+		})
+		.attr("opacity",0.5);
+
+	
+	console.log("Dataset", dataset);
+	
+	dataset_to_HTML(dataset);
+	
+	
+	
+	function dataset_to_HTML(data){
+		var div = d3.select("#dataset");
+		var join = div.selectAll("span.label.label-info")
+			.data(dataset)
+			.enter()
+		.append("span")
+		.attr("style","margin-right:2px");
+		
+		join.attr("class","label label-info")
+		.text(function(d){return d});
+	}
+	
+	</script>
+  </body>
+</html>
