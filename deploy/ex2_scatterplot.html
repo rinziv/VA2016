@@ -40,8 +40,9 @@
 	          </div>
 	          <div class="col-sm-7">
 	            <h2>Visualization</h2>
-	            <div id="viz"></div>
+	            <div id="viz"><img src="https://placehold.it/500x300?text=My+Visualization"></div>
 	         </div>
+		 </div>
 			 <div class="row">
 				 <h3>Dataset</h3>
 			 	<div class="col-sm-12" id="dataset"></div>
@@ -79,39 +80,6 @@
 	var w = 350;
 	var h = 200;
 	var margins = {top:10, left:10, bottom:10, right:10};
-	
-	var svg = d3.select("#viz")
-		.append("svg")
-		.attr("width",w)
-	.attr("height",h);
-	
-	var circles = svg.selectAll("circle")
-		.data(dataset)
-		.enter()
-	.append("circle");
-	
-	var minx = d3.min(dataset,function(d){return d[0]});
-	var maxx = d3.max(dataset,function(d){return d[0]});
-	
-	var miny = d3.min(dataset,function(d){return d[1]});
-	var maxy = d3.max(dataset,function(d){return d[1]});
-	
-	
-	var xs = d3.scale.linear()
-		.domain([minx,maxx])
-		.range([margins.left,w-margins.right]);
-	
-	var ys = d3.scale.linear()
-		.domain([miny,maxy])
-		.range([h-margins.bottom,margins.top]); 
-	
-	circles
-	.attr("cx",function(d){
-		console.log("coord",d);
-		return xs(d[0])}
-	)
-	.attr("cy",function(d){return ys(d[1])})
-	.attr("r",3);
 	
 	
 	console.log("Dataset", dataset);
