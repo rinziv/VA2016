@@ -1,30 +1,12 @@
-<!DOCTYPE html>
-<meta charset="utf-8">
-<style>
-
-text {
-  font: bold 48px monospace;
-}
-
-.enter {
-  fill: green;
-}
-
-.update {
-  fill: #333;
-}
-
-</style>
-<body>
-		<script type="text/javascript" src="./assets/js/d3.min.js"></script>
-<script>
-
 var alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
 
 var width = 960,
     height = 500;
 
-var svg = d3.select("body").append("svg")
+
+document.getElementById("txtLetters").value = alphabet.join("");
+
+var svg = d3.select("#viz").append("svg")
     .attr("width", width)
     .attr("height", height)
   .append("g")
@@ -62,11 +44,26 @@ function update(data) {
 // The initial display.
 update(alphabet);
 
-// Grab a random sample of letters from the alphabet, in alphabetical order.
-updateData(function() {
-  update(d3.shuffle(alphabet)
-      .slice(0, Math.floor(Math.random() * 26))
-      .sort());
-}, 1500);
 
-</script>
+function generateLetters(){
+	var aLetters = d3.shuffle(alphabet)
+		.slice(0, Math.floor(Math.random() * 26))
+	.sort();
+	
+	var letters = aLetters.join("");
+	document.getElementById("txtLetters").value = letters;
+	
+}
+
+function updateData(){
+	var letters = document.getElementById("txtLetters").value.split("");
+	update(letters);
+}
+
+
+// Grab a random sample of letters from the alphabet, in alphabetical order.
+// setInterval(function() {
+//   update(d3.shuffle(alphabet)
+//       .slice(0, Math.floor(Math.random() * 26))
+//       .sort());
+// }, 1500);
