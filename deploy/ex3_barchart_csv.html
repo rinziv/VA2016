@@ -59,12 +59,12 @@
 	<script src="./assets/js/d3.min.js"></script>
 	
 	<script>
-	var dataset = [5, 10, 13, 19, 21, 25, 22, 18, 15, 13,11, 12, 15, 20, 18, 17, 16, 18, 23, 25];
+
 	
 	var width = 500;
 	var height = 300;
 	
-	var margins = {top:10, left:10,bottom:10,right:10};
+	var margins = {top:10, left:10,bottom:20,right:10};
 	
 	var svg = d3.select("#viz")
 	.append("svg")
@@ -72,6 +72,45 @@
 	.attr("height",height);
 	
 	
+	var y = d3.scale.linear()
+	.range([0,height-margins.bottom - margins.top]);
+	
+	var x = d3.scale.ordinal()
+	.domain(["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"])
+	.rangeRoundBands([0,width],0.1);
+	
+	var xAxis = d3.svg.axis()
+	.scale(x);
+	
+	var yAxis = d3.svg.axis()
+	.scale(y);
+	
+	
+	// load the data from CSV
+	d3.csv("./data/letters.csv",function(error, data){
+		console.log(data);
+
+		var min = d3.min(data, function(d){return d.frequency});
+		var max = d3.max(data, function(d){return d.frequency});
+		
+		y.domain([min, max]);
+		
+		var bars = svg.selectAll("rect")
+			.data(data)
+		.enter().append("rect");
+		
+		bars
+			.attr("height", function(d){return y(d.frequency)})
+		.attr("width", x.rangeBand())
+		.attr("x", function(d){return x(d.letter)})
+		.attr("y", function(d){return height - margins.top - margins.bottom - y(d.frequency)});
+		
+		svg.append("g")
+		.attr("transform","translate(0,"+(height-margins.bottom-margins.top)+")")
+		.attr("class","x axis")
+		.call(xAxis);
+		
+	});
 	
 
 	
