@@ -5,32 +5,5 @@
 	</head>
 	<body>
 		<h1 id="hello_world">Hello world!</h1>
-		<!-- <svg width="500" height="300">
-			<circle cx="250" cy="150" r="30" fill="red" stroke="black" stroke-width="4px"/>
-			<g transform="translate(50,50)">
-				<circle r="50px" stroke="red" fill="pink"/>
-				<text text-anchor="middle">Label</text>
-			</g>
-		</svg> -->
-		
-		<script>
-			var svg = d3.select("body")
-				.append("svg")
-				.attr("width", 500)
-				.attr("height", 300);
-
-			var g = svg.append("g")
-				.attr("transform","translate(55,55)");
-
-			g.append("circle")
-				.attr("r",50)
-				.attr("stroke","red")
-				.attr("fill","pink");
-
-			g.append("text")
-				.text("Label")
-				.attr("text-anchor","middle");
-				
-		</script>
 	</body>
 </html>

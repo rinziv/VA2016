@@ -40,14 +40,15 @@
 	          </div>
 	          <div class="col-sm-7">
 	            <h2>Visualization</h2>
-	            <div id="viz"></div>
+	            <div id="viz"><img src="https://placehold.it/500x300?text=My+Visualization"></div>
+			 
+
+	          </div>
+		  </div>
 			 <div class="row">
 				 <h3>Dataset</h3>
 			 	<div class="col-sm-12" id="dataset"></div>
 			 </div>
-
-	        </div>
-
 	        <hr>
 
 	        <footer>
@@ -70,38 +71,7 @@
 	
 	var margins = {top:10, left:10,bottom:10,right:10};
 	
-	var svg = d3.select("#viz")
-	.append("svg")
-	.attr("width",width)
-	.attr("height",height);
 	
-	// var barw = Math.ceil((width-margins.left-margins.right)/(dataset.length + 1));
-	var barw = width / dataset.length - 1;
-	
-
-	
-	var gs = svg.selectAll("g")
-		.data(dataset)
-		.enter()
-		.append("g")
-		.attr("transform",function(d,i){
-			return "translate("+(margins.left+i*(barw+1))+","+(height - d*4-margins.bottom)+")";
-		})
-	
-	// add bars
-	gs.append("rect")
-		.attr("width",barw)
-		.attr("height",function(d){
-			return d*4;
-		});
-		
-	// add text	
-	gs.append("text")
-		.attr("x",barw/2)
-		.attr("y",12)
-		.attr("fill","white")
-		.attr("text-anchor","middle")
-		.text(function(d){return d;});
 	
 	console.log("Dataset", dataset);
 	
