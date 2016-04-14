@@ -76,7 +76,7 @@
 	.range([0,height-margins.bottom - margins.top]);
 	
 	var x = d3.scale.ordinal()
-	.domain(["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"])
+	// .domain(["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"])
 	.rangeRoundBands([0,width],0.1);
 	
 	var xAxis = d3.svg.axis()
@@ -94,6 +94,9 @@
 		var max = d3.max(data, function(d){return d.frequency});
 		
 		y.domain([min, max]);
+		
+		var xDomain = data.map(function(d){return d.letter});
+		x.domain(xDomain);
 		
 		var bars = svg.selectAll("rect")
 			.data(data)

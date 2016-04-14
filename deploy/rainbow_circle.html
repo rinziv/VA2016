@@ -68,8 +68,9 @@ d3.select("#viz")
         .outerRadius(outerRadius)
         .innerRadius(innerRadius)
         .startAngle(function(d) { return d; })
-        .endAngle(function(d) { return d + τ / n * 1.1; }))
-    .style("fill", function(d) { return d3.hsl(d * 360 / τ, 1, .5); });
+        .endAngle(function(d) { return d + τ / n * 0.4; }))
+    .style("fill", function(d) { return d3.hsl(d * 360 / τ, 1, .5); })
+	//.attr("opacity",0.5);
 
 d3.select(self.frameElement).style("height", height + "px");
 	
