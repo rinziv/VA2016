@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script type="text/javascript" src="./assets/js/d3.min.js"></script>
+	</head>
+	<body>
+		<h1 id="hello_world">Hello world!</h1>
+		<svg width="500" height="300">
+			<!-- <g transform="translate(50,50)">
+				<circle r="50px" stroke="red" fill="pink"/>
+				<text text-anchor="middle">Label</text>
+			</g>
+			<g transform="translate(150,50)">
+				<circle r="50px" stroke="red" fill="pink"/>
+				<text text-anchor="middle">Label</text>
+			</g>
+			<g transform="translate(250,50)">
+				<circle r="50px" stroke="red" fill="pink"/>
+				<text text-anchor="middle">Label</text>
+			</g>  -->
+			
+		</svg>
+		
+		<script>
+		// select svg container
+		var svg = d3.select("svg");
+
+		// Create your dataset
+		// var numbers = [13,25,37];
+		// var numbers = [13,25]; // exit
+		var numbers = [13,25,37,54];
+		
+		
+		
+// 		var cerchi = svg.selectAll("circle");
+// 		console.log("i miei cerchi",cerchi);
+//
+//
+// 		// function radius(d,i){
+// // 			return d;
+// // 		}
+// //
+// // 		cerchi
+// // 		.data(numbers)
+// // 		.attr("r",radius);
+//
+// 		// ENTER
+// 		cerchi
+// 			.data(numbers)
+// 			.enter().append("circle");
+//
+// 		// UPDATE
+// 		d3.selectAll("circle")
+// 			//.update()
+// 			.attr("r",function(d,i){
+// 			return d;
+// 			})
+// 			.attr("cx", function(d,i){
+// 				return i*50 + 50;
+// 			})
+// 			.attr("cy",100)
+// 			.attr("fill", "pink")
+// 			.attr("stroke","red");
+// 		;
+//
+// 		//EXIT
+// 		cerchi
+// 			.data(numbers)
+// 			.exit().remove();
+
+
+	var radius = d3.scale.sqrt()
+		.domain([13,54])
+		.range([10,25]);
+
+		svg.selectAll("g")
+			.data(numbers)
+		.enter().append("g");
+		
+		console.log(svg.selectAll("g"));
+		
+		var gs = svg.selectAll("g")
+			.attr("transform",function(d,i){
+				return "translate(" + (i*50+50) + ",50)";
+			});
+			
+		
+		gs.append("circle")
+			.attr("r",function(d,i){
+				return radius(d);
+			})
+			.attr("fill", "pink")
+			.attr("stroke","red");
+		
+		gs.append("text")
+			.text(function(d,i){
+				return d;
+			})
+		
+		
+		
+		
+		
+		</script>
+	</body>
+</html>
