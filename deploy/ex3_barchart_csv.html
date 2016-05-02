@@ -16,6 +16,33 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+		
+		<style>
+
+		.bar {
+		  fill: steelblue;
+		}
+
+		.bar:hover {
+		  fill: brown;
+		}
+
+		.axis {
+		  font: 10px sans-serif;
+		}
+
+		.axis path,
+		.axis line {
+		  fill: none;
+		  stroke: #000;
+		  shape-rendering: crispEdges;
+		}
+
+		.x.axis path {
+		  display: none;
+		}
+
+		</style>
   </head>
   <body>
 	<div class="jumbotron">
@@ -61,19 +88,23 @@
 	<script>
 
 	
-	var width = 500;
+	var width = 600;
 	var height = 300;
 	
 	var margins = {top:10, left:10,bottom:20,right:10};
 	
 	var svg = d3.select("#viz")
 	.append("svg")
-	.attr("width",width)
-	.attr("height",height);
+	// leave space for margins
+	.attr("width",width )
+	.attr("height",height)
+	// create a gruop to translate the content with the expected margins
+	.append("g")
+		.attr("transform", "translate(" + margins.left + "," + margins.top + ")");
 	
 	
 	var y = d3.scale.linear()
-	.range([0,height-margins.bottom - margins.top]);
+	.range([height-margins.bottom - margins.top,0]);
 	
 	var x = d3.scale.ordinal()
 	// .domain(["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"])
@@ -83,35 +114,50 @@
 	.scale(x);
 	
 	var yAxis = d3.svg.axis()
-	.scale(y);
+	.scale(y)
+	.orient("left");
 	
 	
 	// load the data from CSV
 	d3.csv("./data/letters.csv",function(error, data){
 		console.log(data);
 
+		// determine data extent after loading the text file
 		var min = d3.min(data, function(d){return d.frequency});
 		var max = d3.max(data, function(d){return d.frequency});
 		
+		// update the scale with new extent
 		y.domain([min, max]);
 		
 		var xDomain = data.map(function(d){return d.letter});
 		x.domain(xDomain);
 		
-		var bars = svg.selectAll("rect")
+		var bars = svg.selectAll("rect.bar")
 			.data(data)
-		.enter().append("rect");
+		.enter().append("rect")
+			.attr("class","bar");
 		
 		bars
-			.attr("height", function(d){return y(d.frequency)})
+			.attr("height", function(d){return height - y(d.frequency)-margins.top - margins.bottom})
 		.attr("width", x.rangeBand())
 		.attr("x", function(d){return x(d.letter)})
-		.attr("y", function(d){return height - margins.top - margins.bottom - y(d.frequency)});
+		.attr("y", function(d){return  y(d.frequency)});
 		
 		svg.append("g")
 		.attr("transform","translate(0,"+(height-margins.bottom-margins.top)+")")
 		.attr("class","x axis")
 		.call(xAxis);
+		
+		svg.append("g")
+			.attr("class", "y axis")
+			.attr("transform", "translate(10,0)")
+		.call(yAxis)
+		.append("text")
+		.attr("transform", "rotate(-90)")
+		.attr("y", 6)
+		.attr("dy", ".71em")
+		.style("text-anchor", "end")
+		.text("Frequency");
 		
 	});
 	
