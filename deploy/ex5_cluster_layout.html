@@ -80,11 +80,11 @@
 var width = 750,
     height = 2200;
 
-var cluster = d3.layout.cluster()
-    .size([height, width - 160]);
-
-// var tree = d3.layout.tree()
+// var cluster = d3.layout.cluster()
 //     .size([height, width - 160]);
+
+var tree = d3.layout.tree()
+    .size([height, width - 160]);
 
 var diagonal = d3.svg.diagonal()
     .projection(function(d) { return [d.y, d.x]; });
@@ -98,11 +98,13 @@ var svg = d3.select("#viz").append("svg")
 d3.json("./data/flare.json", function(error, root) {
   if (error) throw error;
 
-  var nodes = cluster.nodes(root),
-      links = cluster.links(nodes);
+  console.log("root",root);
+
+  // var nodes = cluster.nodes(root),
+  //     links = cluster.links(nodes);
 	  
-  // var nodes = tree.nodes(root),
-  //     links = tree.links(nodes);  
+  var nodes = tree.nodes(root),
+      links = tree.links(nodes);
 
 	  console.log("links", links);
   var link = svg.selectAll(".link")

@@ -127,7 +127,7 @@
 		var max = d3.max(data, function(d){return d.frequency});
 		
 		// update the scale with new extent
-		y.domain([min, max]);
+		y.domain([0, max]);
 		
 		var xDomain = data.map(function(d){return d.letter});
 		x.domain(xDomain);
