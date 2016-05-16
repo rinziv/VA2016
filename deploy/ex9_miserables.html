@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Simple Force Layout</title>
+
+    <!-- Bootstrap -->
+    <link href="./assets/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+		
+	<style>
+	.node {
+	  stroke: #fff;
+	  stroke-width: 1.5px;
+	}
+
+	.link {
+	  stroke: #999;
+	  stroke-opacity: .6;
+	}
+	</style>
+  </head>
+  <body>
+	<div class="jumbotron">
+		<div class="container">
+			<h1>Force Layout</h1>
+			<p>Force layout with Miserables book networks.</p>
+			<p>Adapted from the example by <a href="http://bl.ocks.org/mbostock/4062045">Mike Bostock</a></p>
+		</div>
+	</div>
+	<div class="container">
+		<!-- Example row of columns -->
+		<div class="row">
+			<div class="col-sm-12">
+				<h2>Visualization</h2>
+				<div id="viz"></div>
+			</div>
+		</div>
+	</div>
+	<hr>
+
+	<footer>
+		<p>Visual Analytics Course - 2015-2016</p>
+	</footer>
+	</div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="./assets/js/jquery-1.11.3.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./assets/js/bootstrap.min.js"></script>
+	<!-- D3.js library -->
+	<script src="./assets/js/d3.min.js"></script>
+	
+	<script>
+		var width = 960,
+		    height = 500;
+
+		var color = d3.scale.category20();
+
+		var force = d3.layout.force()
+			.charge(-120)
+			.linkDistance(30)
+			.size([width, height]);
+
+		var svg = d3.select("#viz").append("svg")
+			.attr("width", width)
+			.attr("height", height);
+
+		d3.json("./data/miserables.json", function(error, graph) {
+			if (error) throw error;
+
+			force
+				.nodes(graph.nodes)
+				.links(graph.links)
+				.start();
+
+		  var link = svg.selectAll(".link")
+		      .data(graph.links)
+		    .enter().append("line")
+		      .attr("class", "link")
+		      .style("stroke-width", function(d) { return Math.sqrt(d.value); });
+
+		  var node = svg.selectAll(".node")
+		      .data(graph.nodes)
+		    .enter().append("circle")
+		      .attr("class", "node")
+		      .attr("r", 5)
+		      .style("fill", function(d) { return color(d.group); })
+		      .call(force.drag);
+
+		  node.append("title")
+		      .text(function(d) { return d.name; });
+
+		  force.on("tick", function() {
+		    link.attr("x1", function(d) { return d.source.x; })
+		        .attr("y1", function(d) { return d.source.y; })
+		        .attr("x2", function(d) { return d.target.x; })
+		        .attr("y2", function(d) { return d.target.y; });
+
+		    node.attr("cx", function(d) { return d.x; })
+		        .attr("cy", function(d) { return d.y; });
+		  });
+		});
+	
+	</script>
+  </body>
+</html>
