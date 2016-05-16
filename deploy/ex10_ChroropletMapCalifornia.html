@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Simple Force Layout</title>
+
+    <!-- Bootstrap -->
+    <link href="./assets/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+		
+	<style>
+
+	svg {
+	  font: 10px sans-serif;
+	}
+
+	.caption {
+	  font-weight: bold;
+	}
+
+	.key path {
+	  display: none;
+	}
+
+	.key line {
+	  stroke: #000;
+	  shape-rendering: crispEdges;
+	}
+
+	.county-border {
+	  fill: none;
+	  stroke: #000;
+	  stroke-opacity: .3;
+	}
+	</style>
+  </head>
+  <body>
+	<div class="jumbotron">
+		<div class="container">
+			<h1>Force Layout</h1>
+			<p>Force layout with Miserables book networks.</p>
+			<p>Adapted from the example by <a href="http://bl.ocks.org/mbostock/4062045">Mike Bostock</a></p>
+		</div>
+	</div>
+	<div class="container">
+		<!-- Example row of columns -->
+		<div class="row">
+			<div class="col-sm-12">
+				<h2>Visualization</h2>
+				<div id="viz"></div>
+			</div>
+		</div>
+	</div>
+	<hr>
+
+	<footer>
+		<p>Visual Analytics Course - 2015-2016</p>
+	</footer>
+	</div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="./assets/js/jquery-1.11.3.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./assets/js/bootstrap.min.js"></script>
+	<!-- D3.js library -->
+	<script src="./assets/js/d3.min.js"></script>
+	
+	
+	<script src="//d3js.org/topojson.v1.min.js"></script>
+	
+	<script>
+
+var width = 960,
+    height = 1100;
+
+var formatNumber = d3.format(",d");
+
+var path = d3.geo.path()
+    .projection(null);
+
+var color = d3.scale.threshold()
+    .domain([1, 10, 50, 100, 500, 1000, 2000, 5000])
+    .range(["#fff7ec", "#fee8c8", "#fdd49e", "#fdbb84", "#fc8d59", "#ef6548", "#d7301f", "#b30000", "#7f0000"]);
+
+// A position encoding for the key only.
+var x = d3.scale.linear()
+    .domain([0, 5100])
+    .range([0, 480]);
+
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom")
+    .tickSize(13)
+    .tickValues(color.domain())
+    .tickFormat(function(d) { return d >= 100 ? formatNumber(d) : null; });
+
+var svg = d3.select("#viz").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+var g = svg.append("g")
+    .attr("class", "key")
+    .attr("transform", "translate(440,40)");
+
+g.selectAll("rect")
+    .data(color.range().map(function(d, i) {
+      return {
+        x0: i ? x(color.domain()[i - 1]) : x.range()[0],
+        x1: i < color.domain().length ? x(color.domain()[i]) : x.range()[1],
+        z: d
+      };
+    }))
+  .enter().append("rect")
+    .attr("height", 8)
+    .attr("x", function(d) { return d.x0; })
+    .attr("width", function(d) { return d.x1 - d.x0; })
+    .style("fill", function(d) { return d.z; });
+
+g.call(xAxis).append("text")
+    .attr("class", "caption")
+    .attr("y", -6)
+    .text("Population per square mile");
+
+d3.json("./data/ca.json", function(error, ca) {
+  if (error) throw error;
+
+  var tracts = topojson.feature(ca, ca.objects.tracts);
+
+  // Clip tracts to land.
+  // svg.append("defs").append("clipPath")
+  //     .attr("id", "clip-land")
+  //   .append("path")
+  //     .datum(topojson.feature(ca, ca.objects.counties))
+  //     .attr("d", path);
+
+  // Group tracts by color for faster rendering.
+  svg.append("g")
+      .attr("class", "tract")
+      // .attr("clip-path", "url(#clip-land)")
+    .selectAll("path")
+      .data(d3.nest()
+        .key(function(d) { return color(d.properties.population / d.properties.area * 2.58999e6); })
+        .entries(tracts.features.filter(function(d) { return d.properties.area; })))
+    .enter().append("path")
+      .style("fill", function(d) { return d.key; })
+      .attr("d", function(d) { return path({type: "FeatureCollection", features: d.values}); });
+
+  // Draw county borders.
+  svg.append("path")
+      .datum(topojson.mesh(ca, ca.objects.counties, function(a, b) { return a !== b; }))
+      .attr("class", "county-border")
+      .attr("d", path);
+});
+
+d3.select(self.frameElement).style("height", height + "px");
+	
+	</script>
+  </body>
+</html>
