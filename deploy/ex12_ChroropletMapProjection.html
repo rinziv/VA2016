@@ -42,8 +42,10 @@
 	<div class="container">
 		<!-- Example row of columns -->
 		<div class="row">
-			<div class="col-sm-12">
-				<h2>Visualization</h2>
+			<div class="col-sm-3" id="instructions">
+				<p>Select the attribute to use to color the map</p>
+			</div>
+			<div class="col-sm-9">
 				<div id="viz"></div>
 			</div>
 		</div>
@@ -96,6 +98,8 @@ var populationColor = d3.scale.quantile()
 var employeeColor = d3.scale.quantile()
 	.range(colorbrewer.Oranges[5]);
 	
+	var attributes = ["Population", "Employee"];
+	
 queue()
 	.defer(d3.json, "./data/comuni.json")
 	.defer(d3.csv, "./data/comuni_toscana_stats.csv", function(d) { 
@@ -129,7 +133,6 @@ function ready(error, comuni, stats) {
 		.enter().append("path")
 	.attr("d", path)
 	.attr("fill", function(d){
-		console.log(d.properties.NOME_COM.replace("'",""));
 		return populationColor(+municipalities[d.properties.NOME_COM.replace("'"," ")].popolazion)}
 	);
   
@@ -139,11 +142,27 @@ function ready(error, comuni, stats) {
 	.datum(topojson.mesh(comuni, comuni.objects.sub, function(a, b) { return a.properties.COD_PRO != b.properties.COD_PRO; }))
 	.attr("class", "provinces")
 	.attr("d", path);
+	
+	// create combo box for selecting the attribute
+	var select = d3.select("#instructions")
+		.append("select")
+	.attr("class", "form-control")
+		.on("change", function(){
+			var val = this.value;
+			changeMapColor(val);
+		});
+		
+		select.selectAll("option")
+		.data(attributes)
+		.enter().append("option")
+		.attr("value", function(d){return d})
+		.text(function(d){return d});
+	
 };
 
 
-function color_by_municipalities(){
-	
+function changeMapColor(selection){
+	console.log(selection);
 }
 
 //d3.select(self.frameElement).style("height", height + "px");
