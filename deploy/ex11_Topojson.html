@@ -18,15 +18,21 @@
     <![endif]-->
 		
 	<style>
-	.node {
-	  stroke: #fff;
-	  stroke-width: 1.5px;
+	.land {
+	  fill: #222;
 	}
 
-	.link {
-	  stroke: #999;
-	  stroke-opacity: .6;
+	.county-boundary {
+	  fill: none;
+	  stroke: #fff;
+	  stroke-width: .5px;
 	}
+
+	.state-boundary {
+	  fill: none;
+	  stroke: #fff;
+	}
+	
 	</style>
   </head>
   <body>
@@ -59,67 +65,45 @@
     <script src="./assets/js/bootstrap.min.js"></script>
 	<!-- D3.js library -->
 	<script src="./assets/js/d3.min.js"></script>
-	
+	<script src="//d3js.org/topojson.v1.min.js"></script>
 	<script>
-		var width = 960,
-		    height = 500;
 
-		var color = d3.scale.category20();
+var width = 960,
+    height = 500;
 
-		var force = d3.layout.force()
-			.charge(-150)
-			.linkDistance(30)
-			.size([width, height]);
+var projection = d3.geo.albersUsa()
+    .scale(1000)
+    .translate([width / 2, height / 2]);
 
-		var svg = d3.select("#viz").append("svg")
-			.attr("width", width)
-			.attr("height", height);
+var path = d3.geo.path()
+    .projection(projection);
 
-		d3.json("./data/miserables.json", function(error, graph) {
-			if (error) throw error;
+var svg = d3.select("#viz").append("svg")
+    .attr("width", width)
+    .attr("height", height);
 
-			force
-				.nodes(graph.nodes)
-				.gravity(0.1)
-				.links(graph.links)
-				.start();
+d3.json("./data/us.json", function(error, us) {
+  if (error) throw error;
 
-		  var link = svg.selectAll(".link")
-		      .data(graph.links)
-		    .enter().append("line")
-		      .attr("class", "link")
-		      .style("stroke-width", function(d) { return Math.sqrt(d.value); });
+  console.log(us);
 
-		  var node = svg.selectAll(".node")
-		      .data(graph.nodes)
-		    .enter().append("circle")
-		      .attr("class", "node")
-		      .attr("r", 5)
-		      .style("fill", function(d) { return color(d.group); })
-		      .call(force.drag);
+  svg.insert("path", ".graticule")
+      .datum(topojson.feature(us, us.objects.land))
+      .attr("class", "land")
+      .attr("d", path);
 
-		  node.append("title")
-		      .text(function(d) { return d.name; });
+  svg.insert("path", ".graticule")
+      .datum(topojson.mesh(us, us.objects.counties/*, function(a, b) { return a !== b && !(a.id / 1000 ^ b.id / 1000); }*/))
+      .attr("class", "county-boundary")
+      .attr("d", path);
 
-		  force.on("tick", function() {
-		    link.attr("x1", function(d) { return d.source.x; })
-		        .attr("y1", function(d) { return d.source.y; })
-		        .attr("x2", function(d) { return d.target.x; })
-		        .attr("y2", function(d) { return d.target.y; });
+  svg.insert("path", ".graticule")
+      .datum(topojson.mesh(us, us.objects.states/*, function(a, b) { return a !== b; }*/))
+      .attr("class", "state-boundary")
+      .attr("d", path);
+});
 
-		    node.attr("cx", function(d) { return d.x; })
-		        .attr("cy", function(d) { return d.y; });
-		  });
-		  
-		  
-		  var radius = d3.scale.sqrt()
-		  	.range([5,15])
-		  .domain([1,36]);
-		  
-		  force.on("end", function(){
-			  node.attr("r", function(d){return radius(d.weight);});
-		  })
-		});
+d3.select(self.frameElement).style("height", height + "px");
 	
 	</script>
   </body>

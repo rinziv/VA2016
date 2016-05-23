@@ -207,8 +207,7 @@
 	// we'll define a function that we want the layout to call
 	// once the calculations are done.
 
-	force.on('end', function() {
-
+	force.on('tick', function() {
 	    // When this function executes, the force layout
 	    // calculations have concluded. The layout will
 	    // have set various properties in our nodes and

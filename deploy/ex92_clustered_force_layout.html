@@ -74,12 +74,14 @@ var nodes = d3.range(n).map(function() {
       d = {
 		  cluster: i,
 		  radius: r,
-		  // x: Math.cos(i / m * 2 * Math.PI) * 200 + width / 2 + Math.random(),
-		  // y: Math.sin(i / m * 2 * Math.PI) * 200 + height / 2 + Math.random()
+		  x: Math.cos(i / m * 2 * Math.PI) * 200 + width / 2 + Math.random(),
+		  y: Math.sin(i / m * 2 * Math.PI) * 200 + height / 2 + Math.random()
 	  };
   if (!clusters[i] || (r > clusters[i].radius)) clusters[i] = d;
   return d;
 });
+
+console.log("nodes", nodes)
 
 var force = d3.layout.force()
     .nodes(nodes)

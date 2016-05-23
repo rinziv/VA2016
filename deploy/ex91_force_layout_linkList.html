@@ -109,6 +109,8 @@
 	  link.target = nodes[link.target] || (nodes[link.target] = {name: link.target});
 	});
 
+	console.log("nodes", nodes);
+
 	var width = 960,
 	    height = 500;
 
@@ -116,6 +118,7 @@
 	    .nodes(d3.values(nodes))
 	    .links(links)
 	    .size([width, height])
+		.gravity(.1)
 	    .linkDistance(60)
 	    .charge(-300)
 	    .on("tick", tick)
