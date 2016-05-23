@@ -20,7 +20,7 @@
 	<style>
 	path {
 	  stroke: #ddd;
-	  fill:#ccc;
+
 	}
 
 
@@ -110,12 +110,28 @@ function ready(error, comuni, stats) {
 	if (error) throw error;
 	console.log(municipalities);
 	console.log(provinces);
+	
+	console.log("popo", d3.values(municipalities).map(function(d){
+		return +d.popolazion;
+	}));
+	
+	populationColor.domain(d3.values(municipalities).map(function(d){
+		return +d.popolazion;
+	}))
+	
+	console.log(populationColor.domain())
+	
+	
 	svg.append("g")
 		.attr("class", "comuni")
 		.selectAll("path")
 		.data(topojson.feature(comuni, comuni.objects.sub).features)
 		.enter().append("path")
-	.attr("d", path);
+	.attr("d", path)
+	.attr("fill", function(d){
+		console.log(d.properties.NOME_COM.replace("'",""));
+		return populationColor(+municipalities[d.properties.NOME_COM.replace("'"," ")].popolazion)}
+	);
   
 	svg.append("g")
 	.attr("class","provinces")
