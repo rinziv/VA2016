@@ -96,9 +96,15 @@ var populationColor = d3.scale.quantile()
 	.range(colorbrewer.Reds[5]);
 	
 var employeeColor = d3.scale.quantile()
-	.range(colorbrewer.Oranges[5]);
+	.range(colorbrewer.Greens[5]);
+
+var ratioColor = d3.scale.quantile()
+	.range(colorbrewer.BrBG[3]);
 	
-	var attributes = ["Population", "Employee"];
+	
+
+	
+var attributes = ["Population", "Employee", "Ratio"];
 	
 queue()
 	.defer(d3.json, "./data/comuni.json")
@@ -118,14 +124,20 @@ function ready(error, comuni, stats) {
 	populationColor.domain(d3.values(municipalities).map(function(d){
 		return +d.popolazion;
 	}))
-	
+
 	employeeColor.domain(d3.values(municipalities).map(
 		function(d){
 			return +d.addetti_un
 		}
 	))
 	
-	console.log(employeeColor.domain());
+	ratioColor.domain(d3.values(municipalities).map(function(d){
+		return +d.addetti_un / +d.popolazion;
+	}))
+	
+	
+	
+	console.log(ratioColor.domain());
 	
 	svg.append("g")
 		.attr("class", "comuni")
@@ -133,9 +145,13 @@ function ready(error, comuni, stats) {
 		.data(topojson.feature(comuni, comuni.objects.sub).features)
 		.enter().append("path")
 	.attr("d", path)
+	.attr("fill","#aaa")
 	.attr("fill", function(d){
 		return populationColor(+municipalities[d.properties.NOME_COM.replace("'"," ")].popolazion)}
 	);
+	// .attr("fill", function(d){
+// 		return employeeColor(+municipalities[d.properties.NOME_COM.replace("'"," ")].addetti_un)}
+// 	);
   
 	svg.append("g")
 	.attr("class","provinces")
@@ -163,17 +179,25 @@ function ready(error, comuni, stats) {
 
 
 function changeMapColor(selection){
-
+	console.log(selection);
 	if (selection=="Population"){
 		svg.selectAll("g.comuni path")
 			.attr("fill", function(d){
 				return populationColor(+municipalities[d.properties.NOME_COM.replace("'"," ")].popolazion)	
 			});
 	}
-	if (selection==="Employee"){
+	if (selection=="Employee"){
 		d3.selectAll("g.comuni path")
 			.attr("fill", function(d){
 				return employeeColor(+municipalities[d.properties.NOME_COM.replace("'"," ")].addetti_un)	
+			});
+	}
+	
+	if (selection=="Ratio"){
+		d3.selectAll("g.comuni path")
+			.attr("fill", function(d){
+				var munic = municipalities[d.properties.NOME_COM.replace("'"," ")];
+				return ratioColor(+munic.addetti_un / +munic.popolazion );	
 			});
 	}
 	
