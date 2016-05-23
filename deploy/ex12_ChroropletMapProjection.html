@@ -115,16 +115,17 @@ function ready(error, comuni, stats) {
 	console.log(municipalities);
 	console.log(provinces);
 	
-	console.log("popo", d3.values(municipalities).map(function(d){
-		return +d.popolazion;
-	}));
-	
 	populationColor.domain(d3.values(municipalities).map(function(d){
 		return +d.popolazion;
 	}))
 	
-	console.log(populationColor.domain())
+	employeeColor.domain(d3.values(municipalities).map(
+		function(d){
+			return +d.addetti_un
+		}
+	))
 	
+	console.log(employeeColor.domain());
 	
 	svg.append("g")
 		.attr("class", "comuni")
@@ -162,7 +163,20 @@ function ready(error, comuni, stats) {
 
 
 function changeMapColor(selection){
-	console.log(selection);
+
+	if (selection=="Population"){
+		svg.selectAll("g.comuni path")
+			.attr("fill", function(d){
+				return populationColor(+municipalities[d.properties.NOME_COM.replace("'"," ")].popolazion)	
+			});
+	}
+	if (selection==="Employee"){
+		d3.selectAll("g.comuni path")
+			.attr("fill", function(d){
+				return employeeColor(+municipalities[d.properties.NOME_COM.replace("'"," ")].addetti_un)	
+			});
+	}
+	
 }
 
 //d3.select(self.frameElement).style("height", height + "px");
