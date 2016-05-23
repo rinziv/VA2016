@@ -1,0 +1,288 @@
+codice_region,codice_provincia,codice_comune,regione,provincia,comune,addetti_un,popolazion
+9,45,1,Toscana,Massa-Carrara,Aulla,3765,10178
+9,45,2,Toscana,Massa-Carrara,Bagnone,392,2022
+9,45,3,Toscana,Massa-Carrara,Carrara,21556,65034
+9,45,4,Toscana,Massa-Carrara,Casola in Lunigiana,157,1231
+9,45,5,Toscana,Massa-Carrara,Comano,158,799
+9,45,6,Toscana,Massa-Carrara,Filattiera,279,2474
+9,45,7,Toscana,Massa-Carrara,Fivizzano,1987,9174
+9,45,8,Toscana,Massa-Carrara,Fosdinovo,640,4379
+9,45,9,Toscana,Massa-Carrara,Licciana Nardi,1169,4887
+9,45,10,Toscana,Massa-Carrara,Massa,24893,66769
+9,45,11,Toscana,Massa-Carrara,Montignoso,1841,10023
+9,45,12,Toscana,Massa-Carrara,Mulazzo,543,2565
+9,45,13,Toscana,Massa-Carrara,Podenzana,310,1819
+9,45,14,Toscana,Massa-Carrara,Pontremoli,2169,8252
+9,45,15,Toscana,Massa-Carrara,Tresana,271,2055
+9,45,16,Toscana,Massa-Carrara,Villafranca in Lunigiana,1168,4609
+9,45,17,Toscana,Massa-Carrara,Zeri,184,1382
+9,46,1,Toscana,Lucca,Altopascio,5525,11152
+9,46,2,Toscana,Lucca,Bagni di Lucca,1919,6550
+9,46,3,Toscana,Lucca,Barga,4874,10018
+9,46,4,Toscana,Lucca,Borgo a Mozzano,3211,7358
+9,46,5,Toscana,Lucca,Camaiore,9030,30206
+9,46,6,Toscana,Lucca,Camporgiano,326,2394
+9,46,7,Toscana,Lucca,Capannori,17652,42454
+9,46,8,Toscana,Lucca,Careggine,91,642
+9,46,9,Toscana,Lucca,Castelnuovo di Garfagnana,3132,6073
+9,46,10,Toscana,Lucca,Castiglione di Garfagnana,330,1890
+9,46,11,Toscana,Lucca,Coreglia Antelminelli,1515,4813
+9,46,12,Toscana,Lucca,Fabbriche di Vallico,84,526
+9,46,13,Toscana,Lucca,Forte dei Marmi,3850,8444
+9,46,14,Toscana,Lucca,Fosciandora,60,670
+9,46,15,Toscana,Lucca,Gallicano,1197,3795
+9,46,16,Toscana,Lucca,Giuncugnano,69,538
+9,46,17,Toscana,Lucca,Lucca,34057,81862
+9,46,18,Toscana,Lucca,Massarosa,4912,20548
+9,46,19,Toscana,Lucca,Minucciano,398,2521
+9,46,20,Toscana,Lucca,Molazzana,96,1188
+9,46,21,Toscana,Lucca,Montecarlo,1022,4345
+9,46,22,Toscana,Lucca,Pescaglia,1021,3718
+9,46,23,Toscana,Lucca,Piazza al Serchio,560,2556
+9,46,24,Toscana,Lucca,Pietrasanta,8604,24409
+9,46,25,Toscana,Lucca,Pieve Fosciana,578,2367
+9,46,26,Toscana,Lucca,Porcari,5709,7109
+9,46,27,Toscana,Lucca,San Romano in Garfagnana,174,1432
+9,46,28,Toscana,Lucca,Seravezza,3611,12706
+9,46,29,Toscana,Lucca,Sillano,112,784
+9,46,30,Toscana,Lucca,Stazzema,640,3367
+9,46,31,Toscana,Lucca,Vagli Sotto,173,1123
+9,46,32,Toscana,Lucca,Vergemoli,44,391
+9,46,33,Toscana,Lucca,Viareggio,22714,61103
+9,46,34,Toscana,Lucca,Villa Basilica,575,1792
+9,46,35,Toscana,Lucca,Villa Collemandina,152,1400
+9,47,1,Toscana,Pistoia,Abetone,395,705
+9,47,2,Toscana,Pistoia,Agliana,5228,14628
+9,47,3,Toscana,Pistoia,Buggiano,2169,8043
+9,47,4,Toscana,Pistoia,Cutigliano,439,1699
+9,47,5,Toscana,Pistoia,Lamporecchio,2171,6777
+9,47,6,Toscana,Pistoia,Larciano,2734,6018
+9,47,7,Toscana,Pistoia,Marliana,347,2917
+9,47,8,Toscana,Pistoia,Massa e Cozzile,3547,7199
+9,47,9,Toscana,Pistoia,Monsummano Terme,6372,19906
+9,47,10,Toscana,Pistoia,Montale,3906,10143
+9,47,11,Toscana,Pistoia,Montecatini-Terme,9002,19900
+9,47,12,Toscana,Pistoia,Pescia,6961,17428
+9,47,13,Toscana,Pistoia,Pieve a Nievole,3346,9098
+9,47,14,Toscana,Pistoia,Pistoia,32241,84274
+9,47,15,Toscana,Pistoia,Piteglio,280,1877
+9,47,16,Toscana,Pistoia,Ponte Buggianese,2083,7618
+9,47,17,Toscana,Pistoia,Quarrata,9286,22683
+9,47,18,Toscana,Pistoia,Sambuca Pistoiese,225,1604
+9,47,19,Toscana,Pistoia,San Marcello Pistoiese,2281,7142
+9,47,20,Toscana,Pistoia,Serravalle Pistoiese,3554,10150
+9,47,21,Toscana,Pistoia,Uzzano,1074,4711
+9,47,22,Toscana,Pistoia,Chiesina Uzzanese,1343,3983
+9,48,1,Toscana,Firenze,Bagno a Ripoli,8820,25232
+9,48,2,Toscana,Firenze,Barberino di Mugello,3283,9531
+9,48,3,Toscana,Firenze,Barberino Val d Elsa,3426,3871
+9,48,4,Toscana,Firenze,Borgo San Lorenzo,5493,15825
+9,48,5,Toscana,Firenze,Calenzano,12845,15042
+9,48,6,Toscana,Firenze,Campi Bisenzio,17752,37249
+9,48,8,Toscana,Firenze,Capraia e Limite,1563,5920
+9,48,10,Toscana,Firenze,Castelfiorentino,5765,17012
+9,48,11,Toscana,Firenze,Cerreto Guidi,3606,9555
+9,48,12,Toscana,Firenze,Certaldo,5382,15670
+9,48,13,Toscana,Firenze,Dicomano,920,4958
+9,48,14,Toscana,Firenze,Empoli,19351,44094
+9,48,15,Toscana,Firenze,Fiesole,3074,14085
+9,48,16,Toscana,Firenze,Figline Valdarno,6185,16301
+9,48,17,Toscana,Firenze,Firenze,199678,356118
+9,48,18,Toscana,Firenze,Firenzuola,2188,4812
+9,48,19,Toscana,Firenze,Fucecchio,8110,21139
+9,48,20,Toscana,Firenze,Gambassi Terme,1970,4709
+9,48,21,Toscana,Firenze,Greve in Chianti,3592,12855
+9,48,22,Toscana,Firenze,Impruneta,3723,14637
+9,48,23,Toscana,Firenze,Incisa in Val d Arno,1238,5503
+9,48,24,Toscana,Firenze,Lastra a Signa,5389,17938
+9,48,25,Toscana,Firenze,Londa,353,1669
+9,48,26,Toscana,Firenze,Marradi,903,3617
+9,48,27,Toscana,Firenze,Montaione,1240,3439
+9,48,28,Toscana,Firenze,Montelupo Fiorentino,4196,11240
+9,48,30,Toscana,Firenze,Montespertoli,3582,11354
+9,48,31,Toscana,Firenze,Palazzuolo sul Senio,435,1301
+9,48,32,Toscana,Firenze,Pelago,2095,7270
+9,48,33,Toscana,Firenze,Pontassieve,5890,20610
+9,48,35,Toscana,Firenze,Reggello,3921,14167
+9,48,36,Toscana,Firenze,Rignano sull Arno,1765,7542
+9,48,37,Toscana,Firenze,Rufina,1789,6693
+9,48,38,Toscana,Firenze,San Casciano in Val di Pesa,3792,16615
+9,48,39,Toscana,Firenze,San Godenzo,260,1187
+9,48,40,Toscana,Firenze,San Piero a Sieve,905,3758
+9,48,41,Toscana,Firenze,Scandicci,19522,50136
+9,48,42,Toscana,Firenze,Scarperia,2980,6778
+9,48,43,Toscana,Firenze,Sesto Fiorentino,23505,46054
+9,48,44,Toscana,Firenze,Signa,4908,15433
+9,48,45,Toscana,Firenze,Tavarnelle Val di Pesa,4095,7153
+9,48,46,Toscana,Firenze,Vaglia,854,4865
+9,48,49,Toscana,Firenze,Vicchio,1431,7145
+9,48,50,Toscana,Firenze,Vinci,6122,13778
+9,49,1,Toscana,Livorno,Bibbona,855,3051
+9,49,2,Toscana,Livorno,Campiglia Marittima,3526,12540
+9,49,3,Toscana,Livorno,Campo nell Elba,1395,4155
+9,49,4,Toscana,Livorno,Capoliveri,879,3105
+9,49,5,Toscana,Livorno,Capraia Isola,137,333
+9,49,6,Toscana,Livorno,Castagneto Carducci,2411,8226
+9,49,7,Toscana,Livorno,Cecina,8497,26515
+9,49,8,Toscana,Livorno,Collesalvetti,4962,15871
+9,49,9,Toscana,Livorno,Livorno,54132,156274
+9,49,10,Toscana,Livorno,Marciana,594,2162
+9,49,11,Toscana,Livorno,Marciana Marina,591,1891
+9,49,12,Toscana,Livorno,Piombino,14097,33925
+9,49,13,Toscana,Livorno,Porto Azzurro,949,3220
+9,49,14,Toscana,Livorno,Portoferraio,4640,11508
+9,49,15,Toscana,Livorno,Rio Marina,576,2150
+9,49,16,Toscana,Livorno,Rio nell Elba,168,952
+9,49,17,Toscana,Livorno,Rosignano Marittimo,8558,30581
+9,49,18,Toscana,Livorno,San Vincenzo,1796,6540
+9,49,19,Toscana,Livorno,Sassetta,147,548
+9,49,20,Toscana,Livorno,Suvereto,566,2897
+9,50,1,Toscana,Pisa,Bientina,3102,6115
+9,50,2,Toscana,Pisa,Buti,1091,5431
+9,50,3,Toscana,Pisa,Calci,856,5838
+9,50,4,Toscana,Pisa,Calcinaia,4929,8608
+9,50,5,Toscana,Pisa,Capannoli,1128,5106
+9,50,6,Toscana,Pisa,Casale Marittimo,194,1007
+9,50,7,Toscana,Pisa,Casciana Terme,955,3538
+9,50,8,Toscana,Pisa,Cascina,8720,38359
+9,50,9,Toscana,Pisa,Castelfranco di Sotto,4897,11415
+9,50,10,Toscana,Pisa,Castellina Marittima,526,1817
+9,50,11,Toscana,Pisa,Castelnuovo di Val di Cecina,401,2467
+9,50,12,Toscana,Pisa,Chianni,208,1563
+9,50,13,Toscana,Pisa,Crespina,923,3746
+9,50,14,Toscana,Pisa,Fauglia,1015,3124
+9,50,15,Toscana,Pisa,Guardistallo,134,1026
+9,50,16,Toscana,Pisa,Lajatico,284,1389
+9,50,17,Toscana,Pisa,Lari,3761,8083
+9,50,18,Toscana,Pisa,Lorenzana,226,1144
+9,50,19,Toscana,Pisa,Montecatini Val di Cecina,409,2008
+9,50,20,Toscana,Pisa,Montescudaio,542,1436
+9,50,21,Toscana,Pisa,Monteverdi Marittimo,99,701
+9,50,22,Toscana,Pisa,Montopoli in Val d Arno,3512,9648
+9,50,23,Toscana,Pisa,Orciano Pisano,157,628
+9,50,24,Toscana,Pisa,Palaia,743,4536
+9,50,25,Toscana,Pisa,Peccioli,1235,4833
+9,50,26,Toscana,Pisa,Pisa,47482,89694
+9,50,27,Toscana,Pisa,Pomarance,2782,6323
+9,50,28,Toscana,Pisa,Ponsacco,3586,12576
+9,50,29,Toscana,Pisa,Pontedera,15308,24971
+9,50,30,Toscana,Pisa,Riparbella,211,1327
+9,50,31,Toscana,Pisa,San Giuliano Terme,6541,30392
+9,50,32,Toscana,Pisa,San Miniato,9638,26365
+9,50,33,Toscana,Pisa,Santa Croce sull Arno,10140,12500
+9,50,34,Toscana,Pisa,Santa Luce,287,1465
+9,50,35,Toscana,Pisa,Santa Maria a Monte,3991,10841
+9,50,36,Toscana,Pisa,Terricciola,934,3939
+9,50,37,Toscana,Pisa,Vecchiano,2159,11425
+9,50,38,Toscana,Pisa,Vicopisano,2916,7907
+9,50,39,Toscana,Pisa,Volterra,3988,11264
+9,51,1,Toscana,Arezzo,Anghiari,1263,5860
+9,51,2,Toscana,Arezzo,Arezzo,45681,91589
+9,51,3,Toscana,Arezzo,Badia Tedalda,267,1215
+9,51,4,Toscana,Arezzo,Bibbiena,5270,11462
+9,51,5,Toscana,Arezzo,Bucine,2771,9320
+9,51,6,Toscana,Arezzo,Capolona,1706,4807
+9,51,7,Toscana,Arezzo,Caprese Michelangelo,299,1626
+9,51,8,Toscana,Arezzo,Castel Focognano,856,3331
+9,51,9,Toscana,Arezzo,Castelfranco di Sopra,931,2731
+9,51,10,Toscana,Arezzo,Castel San Niccolò,765,2855
+9,51,11,Toscana,Arezzo,Castiglion Fibocchi,996,1985
+9,51,12,Toscana,Arezzo,Castiglion Fiorentino,4017,12031
+9,51,13,Toscana,Arezzo,Cavriglia,1863,7808
+9,51,14,Toscana,Arezzo,Chitignano,142,954
+9,51,15,Toscana,Arezzo,Chiusi della Verna,1143,2225
+9,51,16,Toscana,Arezzo,Civitella in Val di Chiana,4206,8687
+9,51,17,Toscana,Arezzo,Cortona,6107,22048
+9,51,18,Toscana,Arezzo,Foiano della Chiana,2575,8412
+9,51,19,Toscana,Arezzo,Laterina,1202,3433
+9,51,20,Toscana,Arezzo,Loro Ciuffenna,1171,5174
+9,51,21,Toscana,Arezzo,Lucignano,1145,3468
+9,51,22,Toscana,Arezzo,Marciano della Chiana,1149,2757
+9,51,23,Toscana,Arezzo,Montemignaio,100,589
+9,51,24,Toscana,Arezzo,Monterchi,432,1880
+9,51,25,Toscana,Arezzo,Monte San Savino,3005,8128
+9,51,26,Toscana,Arezzo,Montevarchi,9119,22239
+9,51,27,Toscana,Arezzo,Ortignano Raggiolo,247,852
+9,51,28,Toscana,Arezzo,Pergine Valdarno,846,3111
+9,51,29,Toscana,Arezzo,Pian di Sco,1591,5441
+9,51,30,Toscana,Arezzo,Pieve Santo Stefano,1289,3316
+9,51,31,Toscana,Arezzo,Poppi,2068,5873
+9,51,32,Toscana,Arezzo,Pratovecchio,1251,3090
+9,51,33,Toscana,Arezzo,San Giovanni Valdarno,5590,16993
+9,51,34,Toscana,Arezzo,Sansepolcro,6757,15693
+9,51,35,Toscana,Arezzo,Sestino,430,1454
+9,51,36,Toscana,Arezzo,Stia,617,3008
+9,51,37,Toscana,Arezzo,Subbiano,2034,5485
+9,51,38,Toscana,Arezzo,Talla,200,1177
+9,51,39,Toscana,Arezzo,Terranuova Bracciolini,5644,11181
+9,52,1,Toscana,Siena,Abbadia San Salvatore,1980,6832
+9,52,2,Toscana,Siena,Asciano,1583,6488
+9,52,3,Toscana,Siena,Buonconvento,760,3168
+9,52,4,Toscana,Siena,Casole d Elsa,1343,2931
+9,52,5,Toscana,Siena,Castellina in Chianti,1081,2673
+9,52,6,Toscana,Siena,Castelnuovo Berardenga,1246,7470
+9,52,7,Toscana,Siena,Castiglione d Orcia,509,2508
+9,52,8,Toscana,Siena,Cetona,510,2854
+9,52,9,Toscana,Siena,Chianciano Terme,3304,6955
+9,52,10,Toscana,Siena,Chiusdino,334,1918
+9,52,11,Toscana,Siena,Chiusi,3467,8612
+9,52,12,Toscana,Siena,Colle di Val d Elsa,6486,19521
+9,52,13,Toscana,Siena,Gaiole in Chianti,867,2386
+9,52,14,Toscana,Siena,Montalcino,1561,5118
+9,52,15,Toscana,Siena,Montepulciano,4837,13883
+9,52,16,Toscana,Siena,Monteriggioni,3909,7891
+9,52,17,Toscana,Siena,Monteroni d Arbia,1601,7170
+9,52,18,Toscana,Siena,Monticiano,272,1408
+9,52,19,Toscana,Siena,Murlo,347,1932
+9,52,20,Toscana,Siena,Piancastagnaio,1750,4196
+9,52,21,Toscana,Siena,Pienza,738,2233
+9,52,22,Toscana,Siena,Poggibonsi,10850,27420
+9,52,23,Toscana,Siena,Radda in Chianti,845,1669
+9,52,24,Toscana,Siena,Radicofani,459,1219
+9,52,25,Toscana,Siena,Radicondoli,211,978
+9,52,26,Toscana,Siena,Rapolano Terme,1360,4776
+9,52,27,Toscana,Siena,San Casciano dei Bagni,376,1745
+9,52,28,Toscana,Siena,San Gimignano,3396,7114
+9,52,29,Toscana,Siena,San Giovanni d Asso,151,903
+9,52,30,Toscana,Siena,San Quirico d Orcia,947,2463
+9,52,31,Toscana,Siena,Sarteano,923,4535
+9,52,32,Toscana,Siena,Siena,31019,52625
+9,52,33,Toscana,Siena,Sinalunga,4194,11790
+9,52,34,Toscana,Siena,Sovicille,1972,8366
+9,52,35,Toscana,Siena,Torrita di Siena,2310,7121
+9,52,36,Toscana,Siena,Trequanda,411,1417
+9,53,1,Toscana,Grosseto,Arcidosso,1249,4114
+9,53,2,Toscana,Grosseto,Campagnatico,354,2423
+9,53,3,Toscana,Grosseto,Capalbio,837,3750
+9,53,4,Toscana,Grosseto,Castel del Piano,1471,4331
+9,53,5,Toscana,Grosseto,Castell Azzara,259,1826
+9,53,6,Toscana,Grosseto,Castiglione della Pescaia,2608,7272
+9,53,7,Toscana,Grosseto,Cinigiano,497,2695
+9,53,8,Toscana,Grosseto,Civitella Paganico,630,3045
+9,53,9,Toscana,Grosseto,Follonica,6503,21091
+9,53,10,Toscana,Grosseto,Gavorrano,1260,8193
+9,53,11,Toscana,Grosseto,Grosseto,26307,71263
+9,53,12,Toscana,Grosseto,Isola del Giglio,538,1406
+9,53,13,Toscana,Grosseto,Magliano in Toscana,459,3719
+9,53,14,Toscana,Grosseto,Manciano,1911,6871
+9,53,15,Toscana,Grosseto,Massa Marittima,2302,8818
+9,53,16,Toscana,Grosseto,Monte Argentario,3238,12147
+9,53,17,Toscana,Grosseto,Montieri,207,1248
+9,53,18,Toscana,Grosseto,Orbetello,4616,14607
+9,53,19,Toscana,Grosseto,Pitigliano,1092,4134
+9,53,20,Toscana,Grosseto,Roccalbegna,239,1241
+9,53,21,Toscana,Grosseto,Roccastrada,1753,9199
+9,53,22,Toscana,Grosseto,Santa Fiora,942,2767
+9,53,23,Toscana,Grosseto,Scansano,722,4386
+9,53,24,Toscana,Grosseto,Scarlino,1680,3136
+9,53,25,Toscana,Grosseto,Seggiano,176,953
+9,53,26,Toscana,Grosseto,Sorano,761,3915
+9,53,27,Toscana,Grosseto,Monterotondo Marittimo,403,1210
+9,53,28,Toscana,Grosseto,Semproniano,225,1326
+9,100,1,Toscana,Prato,Cantagallo,1091,2820
+9,100,2,Toscana,Prato,Carmignano,3863,11857
+9,100,3,Toscana,Prato,Montemurlo,13707,17502
+9,100,4,Toscana,Prato,Poggio a Caiano,2657,8622
+9,100,5,Toscana,Prato,Prato,78505,172499
+9,100,6,Toscana,Prato,Vaiano,3315,9051
+9,100,7,Toscana,Prato,Vernio,980,5535

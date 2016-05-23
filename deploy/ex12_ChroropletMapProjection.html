@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Tuscany Choroplet map</title>
+
+    <!-- Bootstrap -->
+    <link href="./assets/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+		
+	<style>
+	path {
+	  stroke: #ddd;
+	  fill:#ccc;
+	}
+
+
+    .provinces path {
+		fill:none;
+		stroke: #eee;
+		stroke-width:2px;
+	}
+	
+	</style>
+  </head>
+  <body>
+	<div class="jumbotron">
+		<div class="container">
+			<h1>Tuscany Population/Occupation density</h1>
+			<p>Force layout with Miserables book networks.</p>
+		</div>
+	</div>
+	<div class="container">
+		<!-- Example row of columns -->
+		<div class="row">
+			<div class="col-sm-12">
+				<h2>Visualization</h2>
+				<div id="viz"></div>
+			</div>
+		</div>
+	</div>
+	<hr>
+
+	<footer>
+		<p>Visual Analytics Course - 2015-2016</p>
+	</footer>
+	</div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="./assets/js/jquery-1.11.3.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./assets/js/bootstrap.min.js"></script>
+	<!-- D3.js library -->
+	<script src="./assets/js/d3.min.js"></script>
+	
+	<script src="./assets/js/colorbrewer.js"></script>
+	
+	<script src="//d3js.org/topojson.v1.min.js"></script>
+	
+	<script type="text/javascript" src="http://d3js.org/queue.v1.min.js"></script>
+	
+	<script>
+
+var width = 800,
+    height = 800;
+
+	var projection = d3.geo.albers()
+	.center([0, 43.3])
+	.rotate([349, 0])
+	.scale(1200 * 15)
+	.translate([width / 2, height / 2]);
+
+var path = d3.geo.path()
+    .projection(projection);
+
+var svg = d3.select("#viz").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+	
+	var municipalities = {};
+	var provinces = {};
+	
+// create a sequential scale for population
+var populationColor = d3.scale.quantile()
+	.range(colorbrewer.Reds[5]);
+	
+var employeeColor = d3.scale.quantile()
+	.range(colorbrewer.Oranges[5]);
+	
+queue()
+	.defer(d3.json, "./data/comuni.json")
+	.defer(d3.csv, "./data/comuni_toscana_stats.csv", function(d) { 
+		municipalities[d.comune] = d;
+		provinces[d.codice_provincia] = provinces[d.codice_provincia] || {COD_PRO:d.codice_provincia, population:0, employee:0};
+		provinces[d.codice_provincia].population += +d.popolazion
+		provinces[d.codice_provincia].employee += +d.addetti_un;
+	})
+	.await(ready);
+
+function ready(error, comuni, stats) {
+	if (error) throw error;
+	console.log(municipalities);
+	console.log(provinces);
+	svg.append("g")
+		.attr("class", "comuni")
+		.selectAll("path")
+		.data(topojson.feature(comuni, comuni.objects.sub).features)
+		.enter().append("path")
+	.attr("d", path);
+  
+	svg.append("g")
+	.attr("class","provinces")
+	.append("path")
+	.datum(topojson.mesh(comuni, comuni.objects.sub, function(a, b) { return a.properties.COD_PRO != b.properties.COD_PRO; }))
+	.attr("class", "provinces")
+	.attr("d", path);
+};
+
+
+function color_by_municipalities(){
+	
+}
+
+//d3.select(self.frameElement).style("height", height + "px");
+	
+	</script>
+  </body>
+</html>
