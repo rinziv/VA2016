@@ -30,6 +30,15 @@
 		stroke-width:2px;
 	}
 	
+	
+	.key path {
+	  display: none;
+	}
+
+	.key line {
+	  stroke: #000;
+	  shape-rendering: crispEdges;
+	}
 	</style>
   </head>
   <body>
@@ -73,7 +82,9 @@
 	<script>
 
 var width = 800,
-    height = 800;
+    height = 800,
+	// variables to visualize key legend
+	x, xAxis;
 
 	var projection = d3.geo.albers()
 	.center([0, 43.3])
@@ -132,7 +143,7 @@ function ready(error, comuni, stats) {
 	))
 	
 	ratioColor.domain(d3.values(municipalities).map(function(d){
-		return +d.addetti_un / +d.popolazion;
+		return +d.addetti_un / +d.popolazion*100;
 	}))
 	
 	
@@ -175,6 +186,7 @@ function ready(error, comuni, stats) {
 		.attr("value", function(d){return d})
 		.text(function(d){return d});
 	
+		createLegend(populationColor);
 };
 
 
@@ -185,22 +197,92 @@ function changeMapColor(selection){
 			.attr("fill", function(d){
 				return populationColor(+municipalities[d.properties.NOME_COM.replace("'"," ")].popolazion)	
 			});
+			updateLegend(populationColor);	
+		
 	}
 	if (selection=="Employee"){
 		d3.selectAll("g.comuni path")
 			.attr("fill", function(d){
 				return employeeColor(+municipalities[d.properties.NOME_COM.replace("'"," ")].addetti_un)	
 			});
+		updateLegend(employeeColor);
 	}
 	
 	if (selection=="Ratio"){
 		d3.selectAll("g.comuni path")
 			.attr("fill", function(d){
 				var munic = municipalities[d.properties.NOME_COM.replace("'"," ")];
-				return ratioColor(+munic.addetti_un / +munic.popolazion );	
+				return ratioColor(+munic.addetti_un / +munic.popolazion *100);	
 			});
+		updateLegend(ratioColor);
 	}
 	
+}
+
+
+function createLegend(colorScale){
+// A position encoding for the key only.
+ x = d3.scale.linear()
+    .domain(d3.extent(colorScale.domain()))
+    .range([0, 400]);
+
+ xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom")
+    .tickSize(13)
+    .tickValues(colorScale.quantiles())
+    .tickFormat(function(d) { return d3.format(".0f")(d) });
+
+var g = svg.append("g")
+    .attr("class", "key")
+    .attr("transform", "translate(" + (width - 240) / 2 + "," + 40 + ")");
+
+g.selectAll("rect")
+    .data(colorScale.range().map(function(color) {
+      var d = colorScale.invertExtent(color);
+
+      if (d[0] == null) d[0] = x.domain()[0];
+      if (d[1] == null) d[1] = x.domain()[1];
+      return d;
+    }))
+  .enter().append("rect")
+    .attr("height", 8)
+    .attr("x", function(d) { return x(d[0]); })
+    .attr("width", function(d) { return x(d[1]) - x(d[0]); })
+    .style("fill", function(d) { return colorScale(d[0]); });
+
+g.call(xAxis).append("text")
+    .attr("class", "caption")
+    .attr("y", -6)
+    .text("Legend (log scale)");
+}
+
+
+function updateLegend(colorScale){
+	x.domain(d3.extent(colorScale.domain()));
+	xAxis.tickValues(colorScale.quantiles());
+	svg.select("g.key")
+		.transition().duration(1500)
+	.call(xAxis);
+	
+	var rects = svg.select("g.key")
+		.selectAll("rect")
+    .data(colorScale.range().map(function(color) {
+      var d = colorScale.invertExtent(color);
+
+      if (d[0] == null) d[0] = x.domain()[0];
+      if (d[1] == null) d[1] = x.domain()[1];
+      return d;
+    }));
+	rects.exit().remove();
+	
+	rects.enter().append("rect")
+	.attr("height",8);
+	
+	rects
+    .attr("x", function(d) { return x(d[0]); })
+    .attr("width", function(d) { return x(d[1]) - x(d[0]); })
+    .style("fill", function(d) { return colorScale(d[0]); });
 }
 
 //d3.select(self.frameElement).style("height", height + "px");
