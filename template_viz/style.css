@@ -1,0 +1,32 @@
+.container {
+    padding-top: 30px;
+    padding-bottom: 30px; 
+}
+
+.navbar {
+	background-color: #ffffff;
+	border-width: 1px;
+	border-bottom-color: #000000;
+	min-height: 50px;
+}
+
+
+
+#titolo{
+	text-align: center;
+	background-color: #dddddd;
+	padding:50px; 
+}
+
+.col-md-1{
+	background-color: #eeeeee;
+}
+
+
+svg text{
+	font-size:12px;
+};
+
+rect{
+	shape-rendering:crispEdges;
+}
